@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,7 @@ namespace test
         /// The service provider for this application
         /// </summary>
         public static IServiceProvider Provider {get;set;}
+
+        public static IConfiguration Configuration { get; set; }
     }
 }

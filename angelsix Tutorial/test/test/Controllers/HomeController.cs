@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -77,7 +78,7 @@ namespace test.Controllers
         }
 
         // private area
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("private")]
         public IActionResult Private()
         {
@@ -87,6 +88,8 @@ namespace test.Controllers
         [Route("login")]
         public async Task<IActionResult> Login(string returnUrl)
         {
+            await HttpContext.SignOutAsync();
+
             var result = await mSignInManager.PasswordSignInAsync("angelsix", "password", true, false);
 
             if (result.Succeeded)
@@ -106,7 +109,7 @@ namespace test.Controllers
         [Route("logout")]
         public async Task<IActionResult> SignOutAsync()
         {
-            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+            await HttpContext.SignOutAsync();
             return Content("done");
         }
 
