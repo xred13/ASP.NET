@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta content="width=device-width" name="viewport" />
+    <title>Success</title>
+</head>
+
+<body>
+
+    <h3>Account Info</h3>
+
+    <form asp-controller="account" asp-action="save" method="post">
+        <table border="1" cellpadding="2" cellspacing="2">
+            <tr>
+                <td>Id</td>
+                <td>@ViewBag.Account.Id</td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td>@ViewBag.Account.Username</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>@ViewBag.Account.Password</td>
+            </tr>
+            <tr>
+                <td>Full Name</td>
+                <td>@ViewBag.Account.Description</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>@ViewBag.Account.Status</td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>@ViewBag.Account.Gender</td>
+            </tr>
+            <tr>
+                <td>Role</td>
+                <td>@ViewBag.Account.Role</td>
+            </tr>
+            <tr>
+                <td valign="top">Languages</td>
+                <td>
+                    @foreach(var language in ViewBag.Account.Languages)
+                    {
+                        <span>@language</span>
+                        <br/>
+                    }
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+

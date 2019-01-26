@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model FormHandling.ViewModels.AccountViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta content="width=device-width" name="viewport"/>
+    <title>Index</title>
+</head>
+
+<body>
+
+    <h3>Register Page</h3>
+
+    <form asp-controller="account" asp-action="save" method="post">
+        <table border="0" cellpadding="2" cellspacing="2">
+            <tr>
+                <td>UserName</td>
+                <td><input asp-for="Account.Username" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" asp-for="Account.Password" /></td>
+            </tr>
+            <tr>
+                <td valign="top">Description</td>
+                <td><textarea cols="20" rows="5" asp-for="Account.Description"></textarea></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td><input type="checkbox" asp-for="Account.Status" /></td>
+            </tr>
+            <tr>
+                <td valign="top">Gender</td>
+                <td>
+                    <input type="radio" value="male" asp-for="Account.Gender" /> Male
+                    <br />
+                    <input type="radio" value="female" asp-for="Account.Gender" /> Female
+                </td>
+            </tr>
+            <tr>
+                <td>Languages</td>
+                <td>
+                    @for (var i = 0; i < Model.Languages.Count; i++)
+                    {
+                        <input type="hidden" asp-for="@Model.Languages[i].Id" />
+                        <input type="hidden" asp-for="@Model.Languages[i].Name" />
+                        <input type="checkbox" asp-for="@Model.Languages[i].IsChecked" />
+                        <label asp-for="@Model.Languages[i].Id">@Model.Languages[i].Name</label>
+
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Role</td>
+                <td><select asp-for="Account.Role" asp-items="@Model.Roles"></select></td>
+            </tr>
+            <tr>
+                <td>&nbsp</td>
+                <td>
+                    <input type="submit" value="Save" />
+                    <input type="hidden" asp-for="Account.Id" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
