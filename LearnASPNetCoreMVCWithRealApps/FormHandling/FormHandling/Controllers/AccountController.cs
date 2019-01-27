@@ -42,7 +42,7 @@ namespace FormHandling.Controllers
                 new Role() { Id = "r4", Name = "Role 4"}
             };
 
-            accountViewModel.Roles = new SelectList(roles, "Id", "name");
+            accountViewModel.Roles = new SelectList(roles, "Id", "Name");
 
             return View("Index", accountViewModel);
         }
