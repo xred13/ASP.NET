@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model FormsValidation.Models.Account
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <h3>Register Page</h3>
+    <form asp-controller="account" asp-action="save" method="post">
+        <table cellpadding="2" cellspacing="2">
+            <tr>
+                <td>Username</td>
+                <td>
+                    <input asp-for="Username" />
+                </td>
+                <td>
+                    <span asp-validation-for="Username"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input asp-for="Password" type="password" />
+                </td>
+                <td>
+                    <span asp-validation-for="Password"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td>
+                    <input asp-for="Age" />
+                </td>
+                <td>
+                    <span asp-validation-for="Age"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>
+                    <input asp-for="Email" />
+                </td>
+                <td>
+                    <span asp-validation-for="Email"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Website</td>
+                <td>
+                    <input asp-for="Website" />
+                </td>
+                <td>
+                    <span asp-validation-for="Website"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input type="submit" value="Save" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
