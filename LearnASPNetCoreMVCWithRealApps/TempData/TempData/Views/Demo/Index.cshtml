@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model TempData.Models.Product
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <form method="post" asp-controller="demo" asp-action="save">
+        <fieldset>
+            <legend>Single Values</legend>
+
+            <table>
+                <tr>
+                    <td>Age</td>
+                    <td><input type="text" name="age" /></td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="username" /></td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Product Information</legend>
+            <table>
+                <tr>
+                    <td>Id</td>
+                    <td>
+                        <input asp-for="Id" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>
+                        <input type="text" asp-for="Name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>
+                        <input type="text" asp-for="Price" />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <input type="submit" value="Save" />
+    </form>
+</body>
+</html>
+
