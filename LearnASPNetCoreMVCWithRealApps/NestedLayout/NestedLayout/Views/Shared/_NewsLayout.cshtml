@@ -1,0 +1,11 @@
+﻿@{ 
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<a asp-controller="news" asp-action="news1">News1</a>
+<a asp-controller="news" asp-action="news2">News2</a>
+<a asp-controller="news" asp-action="news3">News3</a>
+
+<br /><br />
+@RenderBody()

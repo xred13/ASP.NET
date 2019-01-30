@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @RenderSection("head", false)
+</head>
+<body>
+
+    <a asp-controller="home" asp-action="index">Home</a>
+    <a asp-controller="aboutus" asp-action="index">About Us</a>
+    <a asp-controller="news" asp-action="index">News</a>
+    <br /> <br />
+    @RenderBody()
+
+    <br /><br />
+    Copyright xred
+
+</body>
+</html>
