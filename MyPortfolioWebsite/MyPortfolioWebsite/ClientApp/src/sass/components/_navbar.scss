@@ -1,0 +1,26 @@
+.navbar{
+    display: $nav-display;
+    height: $nav-height;
+    background-color: $nav-background-color;
+    justify-content: center;
+    padding: $nav-padding;
+    margin: $nav-margin;
+    border: $nav-border;
+
+    .navbar-button{
+        padding: $nav-button-padding;
+        margin: $nav-button-margin;
+        width: $nav-button-width;
+        height: $nav-height;
+        border: $nav-button-border;
+        background-color: $nav-button-background-color;
+        color: $nav-button-color;
+
+        &:hover{
+            background-color: $nav-button-hover-background-color;
+            color: $nav-button-hover-color;
+        }
+    }
+
+
+}
