@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-export class Aboutme extends Component {
-  displayName = Aboutme.name
+export class AboutMe extends Component {
+  displayName = AboutMe.name
 
   render() {
     return (

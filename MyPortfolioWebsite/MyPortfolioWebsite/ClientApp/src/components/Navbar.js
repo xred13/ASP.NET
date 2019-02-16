@@ -1,6 +1,5 @@
 ﻿import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
 
 export class Navbar extends Component {
   displayName = Navbar.name
@@ -8,7 +7,10 @@ export class Navbar extends Component {
   render() {
     return (
       <nav className="navbar">
-        <select className="navbar-button"></select>
+        <select className="navbar-button">
+          <option value="WebdDevelopment">WebDevelopment</option>
+          <option value="GameDevelopment">GameDevelopment</option>
+        </select>
         <Link to="/Aboutme"><button className="navbar-button">About me</button></Link>
         <Link to="/Contacts"><button className="navbar-button">Contacts</button></Link>
         <Link to="/More"><button className="navbar-button">More</button></Link>
@@ -17,3 +19,4 @@ export class Navbar extends Component {
     );
   }
 }
+
