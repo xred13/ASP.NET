@@ -14,6 +14,7 @@ export class Navbar extends Component {
         <Link to="/Aboutme"><button className="navbar-button">About me</button></Link>
         <Link to="/Contacts"><button className="navbar-button">Contacts</button></Link>
         <Link to="/More"><button className="navbar-button">More</button></Link>
+        <Link to="/Login"><button className="navbar-button">Login</button></Link>
       </nav>
 
     );

@@ -26,4 +26,17 @@
   background-color: white;
   color: red;
 }
+
+.projects-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.projects-container .project {
+  margin: 15px;
+}
 /*# sourceMappingURL=app.css.map */

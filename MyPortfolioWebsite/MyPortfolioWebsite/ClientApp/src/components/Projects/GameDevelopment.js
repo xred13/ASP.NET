@@ -22,7 +22,7 @@ export class GameDevelopment extends Component{
         if(!this.state.loading){
             console.log("Loading stopped, passing data: " + this.state.projects);
             return(
-                <div>
+                <div className="projects-container">
                     <Project projects={this.state.projects}/>
                 </div>
             );

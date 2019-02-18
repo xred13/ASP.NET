@@ -1,5 +1,6 @@
-// -------------- NavMenu --------------
+// -------------- Navbar --------------
 $nav-display: flex;
+$nav-justify-content: center;
 
 
 $nav-height: 100px;
@@ -21,3 +22,12 @@ $nav-button-color: black;
 
 $nav-button-hover-color: red;
 $nav-button-hover-background-color: rgb(255, 255, 255);
+
+// -------------- Projects --------------
+
+// project container
+$projects-container-display: flex;
+$projects-container-justify-content: center;
+
+// project
+$project-margin: 15px;

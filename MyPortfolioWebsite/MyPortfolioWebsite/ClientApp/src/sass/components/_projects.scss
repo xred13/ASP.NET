@@ -1,0 +1,8 @@
+.projects-container{
+    display: $projects-container-display;
+    justify-content: $projects-container-justify-content;
+
+    .project{
+        margin: $project-margin;
+    }
+}

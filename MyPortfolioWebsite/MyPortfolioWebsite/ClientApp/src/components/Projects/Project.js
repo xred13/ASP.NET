@@ -16,7 +16,7 @@ export const Project = (props) => {
             props.projects.map(project => {
                 console.log(project.id);
                 return (
-                    <div key={project.id}>
+                    <div className="project" key={project.id}>
                         <h1>{project.title}</h1>
                         <h3>{project.description}</h3>
                     </div>

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using MyPortfolioWebsite.Models;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,12 @@ namespace MyPortfolioWebsite.IoC
         /// The service provider for this application
         /// </summary>
         public static IServiceProvider Provider { get; set; }
+
+        /// <summary>
+        /// The configuration manager for the application
+        /// </summary>
+        public static IConfiguration Configuration { get; set; }
+
     }
 
 }
