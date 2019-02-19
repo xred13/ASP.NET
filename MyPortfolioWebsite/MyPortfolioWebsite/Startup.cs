@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MyPortfolioWebsite.IoC;
 using MyPortfolioWebsite.Models;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Text;
@@ -71,15 +72,6 @@ namespace MyPortfolioWebsite
                     };
                 });
 
-            // Change login URL
-            services.ConfigureApplicationCookie(options =>
-            {
-                // Redirect to /login
-                options.LoginPath = "/api/login";
-
-                // Change cookie timeout 
-                options.ExpireTimeSpan = TimeSpan.FromDays(15);
-            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -93,6 +85,26 @@ namespace MyPortfolioWebsite
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
+
+            app.Use((context, next) =>
+            {
+                Console.WriteLine("Before checking cookie middleware");
+                string authenticationCookieName = "Authorization";
+                var cookie = context.Request.Cookies[authenticationCookieName];
+                if (cookie != null)
+                {
+                    Console.WriteLine("GOING TO DESERIALIZE");
+                    var token = JsonConvert.DeserializeObject<AccessToken>(cookie);
+                    Console.WriteLine("Bearer "+token.token);
+                    context.Request.Headers.Add("Authorization", "Bearer "+token.token);
+                }
+
+                Console.WriteLine("After checking cookie middleware");
+
+                // Call the next delegate/middleware in the pipeline
+                return next();
+            });
+
             // store instance of the DI service provider so our application can access it anywhere
             IoCContainer.Provider = serviceProvider;
 
@@ -118,6 +130,7 @@ namespace MyPortfolioWebsite
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -135,5 +148,10 @@ namespace MyPortfolioWebsite
                 }
             });
         }
+    }
+
+    public class AccessToken
+    {
+        public string token { get; set; }
     }
 }

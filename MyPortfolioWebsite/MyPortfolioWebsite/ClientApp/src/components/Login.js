@@ -1,47 +1,65 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setLoggedIn } from "../actions/loggedInActions";
+import Cookies from "universal-cookie";
 
-export class Login extends Component {
-  displayName = Login.name
-
-
+class Login extends Component {
+  displayName = Login.name;
 
   constructor(props){
-      super(props);
 
-      this.state = {
+    super(props);
+
+    this.state = {
         username: "",
         password: ""
     }
       
-      this.submitForm = this.submitForm.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
-
-
   inputChange = (e) => {
       this.setState({
           [e.target.id]: e.target.value
-      })
-  }
+      });
+  };
 
   async submitForm(e){
 
     e.preventDefault();
 
     // console.log("BEFORE CREATE");
-
-    // fetch("https://localhost:5001/api/create",{
+    // await fetch("https://localhost:5001/api/create",{
     //     method: "PUT"
     // });
-
     // console.log("AFTER CREATE");
 
     console.log("Before fetching");
     console.log(this.state);
-    await fetch("https://localhost:5001/api/login",{
+
+
+    var response = await fetch("https://localhost:5001/api/login",{
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ username: this.state.username, password: this.state.password})
         });
+
+    if(response.status === 200){
+        console.log("Login successful");
+        var data = await response.json();
+        console.log(data);
+
+        const cookies = new Cookies();
+        cookies.set("Authorization", data, {
+            path: "/",
+            httpOnly: false
+        });
+
+        this.props.setLoggedIn(true);
+        console.log("SHOULD BE TRUE: " + this.props.isLoggedIn);
+    }
+    else{
+        console.log("Login failed");
+    }
 
     console.log("After fetching");
     console.log(this.state);
@@ -58,6 +76,9 @@ export class Login extends Component {
   }
 
   render() {
+
+    console.log("Is logged in?: "+this.props.isLoggedIn);
+
     return (
         <div>
             <form onSubmit={this.submitForm}>
@@ -73,3 +94,16 @@ export class Login extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setLoggedIn: (status) => { dispatch(setLoggedIn(status))}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

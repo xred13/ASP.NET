@@ -183,6 +183,7 @@ namespace MyPortfolioWebsite.Controllers
         {
 
             Console.WriteLine("Username: " + userInfo.username + " Password: " + userInfo.password);
+            await HttpContext.SignOutAsync();
 
             var result = await msignInManager.PasswordSignInAsync(userInfo.username, userInfo.password, true, false);
 
