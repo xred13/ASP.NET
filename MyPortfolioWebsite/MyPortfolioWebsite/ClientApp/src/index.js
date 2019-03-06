@@ -8,16 +8,13 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer';
-import Cookies from 'universal-cookie';
-
+import { CheckLoggedIn } from './components/Authentication/AuthenticationStatusManager';
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 
-const store = createStore(rootReducer);
-
-var cookie = new Cookies();
-cookie.remove("Authorization");
+console.log("LOCAL STORAGE: " + localStorage.getItem("isLoggedIn"));
+const store = createStore(rootReducer, CheckLoggedIn());
 
 ReactDOM.render(
   <Provider store={store}>

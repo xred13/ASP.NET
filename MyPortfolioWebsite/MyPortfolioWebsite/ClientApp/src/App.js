@@ -5,7 +5,7 @@ import { AboutMe } from './components/AboutMe';
 import { Contacts } from './components/Contacts';
 import { More } from './components/More';
 import { Projects } from './components/Projects/Projects'
-import { Navbar } from './components/Navbar'
+import Navbar from './components/Navbar'
 import Login from './components/Login'
 import './css/app.css';
 
@@ -25,10 +25,9 @@ export default class App extends Component {
         <Route path='/AboutMe' component={AboutMe} />
         <Route path='/Contacts' component={Contacts} />
         <Route path='/More' component={More} />
-        <Route path='/WebDevelopment/:projectType' component={Projects} />        
-        <Route path='/GameDevelopment/:projectType' component={Projects} />
+        <Route path='/:projectType' component={Projects} />        
         <Route path="/Login" component={Login} />
       </div>
     );
-  }N
+  }
 }

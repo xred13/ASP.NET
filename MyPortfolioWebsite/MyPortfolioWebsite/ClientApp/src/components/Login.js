@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setLoggedIn } from "../actions/loggedInActions";
-import Cookies from "universal-cookie";
+import { LoggedIn } from "./Authentication/AuthenticationStatusManager";
 
 class Login extends Component {
   displayName = Login.name;
@@ -45,16 +45,9 @@ class Login extends Component {
 
     if(response.status === 200){
         console.log("Login successful");
-        var data = await response.json();
-        console.log(data);
 
-        const cookies = new Cookies();
-        cookies.set("Authorization", data, {
-            path: "/",
-            httpOnly: false
-        });
-
-        this.props.setLoggedIn(true);
+        LoggedIn(() => this.props.setLoggedIn(true));
+        //this.props.setLoggedIn(true);
         console.log("SHOULD BE TRUE: " + this.props.isLoggedIn);
     }
     else{
@@ -67,7 +60,7 @@ class Login extends Component {
     this.setState({
         username: "",
         password: ""
-    })
+    });
 
     fetch("https://localhost:5001/api/private")
         .then(response => response.text())

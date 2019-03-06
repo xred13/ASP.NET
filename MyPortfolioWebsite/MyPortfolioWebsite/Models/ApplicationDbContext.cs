@@ -13,8 +13,6 @@ namespace MyPortfolioWebsite.Models
 
         public DbSet<ProjectDataModel> Projects { get; set; }
 
-        public DbSet<PagesDataModel> Pages { get; set;}
-
         /// <summary>
         /// Default constructor, expecting database options passed in
         /// </summary>

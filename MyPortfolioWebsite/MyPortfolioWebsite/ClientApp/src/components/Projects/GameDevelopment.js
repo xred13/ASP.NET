@@ -5,6 +5,8 @@ export class GameDevelopment extends Component{
     displayName = GameDevelopment.name;
 
     state = {
+        // Each project in projects has a 
+        // title, description and image
         projects: [],
         loading: true
     }

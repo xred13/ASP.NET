@@ -1,23 +1,37 @@
 ﻿import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import LoginButton from './LoginButton';
 
-export class Navbar extends Component {
+class Navbar extends Component {
   displayName = Navbar.name
 
   render() {
     return (
       <nav className="navbar">
-        <select className="navbar-button">
-          <option value="WebdDevelopment">WebDevelopment</option>
-          <option value="GameDevelopment">GameDevelopment</option>
-        </select>
-        <Link to="/Aboutme"><button className="navbar-button">About me</button></Link>
-        <Link to="/Contacts"><button className="navbar-button">Contacts</button></Link>
-        <Link to="/More"><button className="navbar-button">More</button></Link>
-        <Link to="/Login"><button className="navbar-button">Login</button></Link>
+        <ul className="navbar-items-container">
+          <li className="navbar-item"><Link to="#">Home</Link></li>
+          <li className="navbar-dropdown">
+            <Link to="#">Projects</Link>
+            <ul className="navbar-dropdown-items-container">
+              <li className="navbar-dropdown-item"><Link to="#">WebDev</Link></li>
+              <li className="navbar-dropdown-item"><Link to="#">GameDev</Link></li>
+            </ul>
+          </li>
+          <li className="navbar-item"><Link to="#">AboutMe</Link></li>
+          <li className="navbar-item"><Link to="#">Contacts</Link></li>
+          <li className="navbar-item"><Link to="#">Login</Link></li>
+        </ul>
       </nav>
-
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return{
+    isLoggedIn: state.isLoggedIn
+  }
+}
+
+export default connect(mapStateToProps)(Navbar);
 

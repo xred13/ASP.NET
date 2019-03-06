@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 export class Home extends Component {
   displayName = Home.name
 
+
   componentDidMount(){
     console.log("Mounted Home.js");
   }

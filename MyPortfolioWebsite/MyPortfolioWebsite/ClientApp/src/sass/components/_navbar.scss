@@ -1,26 +1,71 @@
+a{
+    color: white;
+    &:hover{
+        color:white;
+    }
+}
+
 .navbar{
-    display: $nav-display;
-    height: $nav-height;
-    background-color: $nav-background-color;
-    justify-content: $nav-justify-content;
-    padding: $nav-padding;
-    margin: $nav-margin;
-    border: $nav-border;
+    display: flex;
+    background-color: rgb(177, 61, 55);
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+        
+    .navbar-items-container{
+        list-style-type: none;
+        list-style-position: inside;
+        padding: 0;
+        margin: 0;
+        height: 100%;
 
-    .navbar-button{
-        padding: $nav-button-padding;
-        margin: $nav-button-margin;
-        width: $nav-button-width;
-        height: $nav-height;
-        border: $nav-button-border;
-        background-color: $nav-button-background-color;
-        color: $nav-button-color;
+        .navbar-item{
+            display: inline-block;
+            padding: 29px;
 
-        &:hover{
-            background-color: $nav-button-hover-background-color;
-            color: $nav-button-hover-color;
+            &:hover{
+                background-color: rgba(119, 22, 22, 0.644);
+            }
+        }
+
+        .navbar-dropdown {
+            display: inline-block;
+            padding: 29px;
+
+            &:hover{
+                background-color: rgba(119, 22, 22, 0.644);
+            }
+
+            position: relative;
+        
+            .navbar-dropdown-items-container{
+                list-style-type: none;
+                list-style-position: inside;
+                position: absolute;
+
+                .navbar-dropdown-item{
+                    display:none;
+
+                }
+            }
+
+            &:hover{
+                .navbar-dropdown-items-container{
+                    .navbar-dropdown-item{
+                        display: block;
+                        background-color: rgb(177, 61, 55);
+                        padding: 29px;
+
+                        &:hover{
+                            background-color: rgb(119, 22, 22);
+                        }
+                        
+                    }
+                }
+            }
         }
     }
-
-
 }
+
+
+

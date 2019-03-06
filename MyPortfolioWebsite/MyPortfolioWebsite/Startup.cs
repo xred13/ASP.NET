@@ -89,14 +89,15 @@ namespace MyPortfolioWebsite
             app.Use((context, next) =>
             {
                 Console.WriteLine("Before checking cookie middleware");
+
                 string authenticationCookieName = "Authorization";
                 var cookie = context.Request.Cookies[authenticationCookieName];
                 if (cookie != null)
                 {
                     Console.WriteLine("GOING TO DESERIALIZE");
                     var token = JsonConvert.DeserializeObject<AccessToken>(cookie);
-                    Console.WriteLine("Bearer "+token.token);
-                    context.Request.Headers.Add("Authorization", "Bearer "+token.token);
+                    Console.WriteLine("Bearer " + token.token);
+                    context.Request.Headers.Add("Authorization", "Bearer " + token.token);
                 }
 
                 Console.WriteLine("After checking cookie middleware");
@@ -104,6 +105,7 @@ namespace MyPortfolioWebsite
                 // Call the next delegate/middleware in the pipeline
                 return next();
             });
+
 
             // store instance of the DI service provider so our application can access it anywhere
             IoCContainer.Provider = serviceProvider;

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -65,35 +66,36 @@ namespace MyPortfolioWebsite.Controllers
         public IEnumerable<ProjectDataModel> GetProjects(string projectType)
         {
 
-            if (Enum.TryParse(projectType, out ProjectDataModel.ProjectTypes projectTypes))
-            {
-                var projectsData = mContext.Projects.Where(project => project.ProjectType.Equals(projectTypes));
+            //if (Enum.TryParse(projectType, out ProjectDataModel.ProjectTypes projectTypes))
+            //{
+            //    var projectsData = mContext.Projects.Where(project => project.ProjectType.Equals(projectTypes));
 
-                return projectsData;
-            }
+            //    return projectsData;
+            //}
 
-            return null;
+            //return null;
 
-            //return new List<ProjectDataModel> {
-            //    new ProjectDataModel
-            //    {
-            //        Id = Guid.NewGuid().ToString("N"),
-            //        Title = "Project0",
-            //        Description = "0's description",
-            //        ProjectType = ProjectDataModel.ProjectTypes.GameDevelopment,
-            //        Image = new byte[10]
-            //    },
-            //    new ProjectDataModel
-            //    {
-            //        Id = Guid.NewGuid().ToString("N"),
-            //        Title = "Project1",
-            //        Description = "1's description",
-            //        ProjectType = ProjectDataModel.ProjectTypes.GameDevelopment,
-            //        Image = new byte[10]
-            //    }
-            //};
+            return new List<ProjectDataModel> {
+                new ProjectDataModel
+                {
+                    Id = Guid.NewGuid().ToString("N"),
+                    Title = "Project0",
+                    Description = "0's description",
+                    ProjectType = ProjectDataModel.ProjectTypes.GameDevelopment,
+                    Image = new byte[10]
+                },
+                new ProjectDataModel
+                {
+                    Id = Guid.NewGuid().ToString("N"),
+                    Title = "Project1",
+                    Description = "1's description",
+                    ProjectType = ProjectDataModel.ProjectTypes.GameDevelopment,
+                    Image = new byte[10]
+                }
+            };
         }
 
+        [AuthorizeToken]
         [HttpPost]
         [Route("projects/add")]
         public void AddProject(ProjectDataModel project)
@@ -105,6 +107,7 @@ namespace MyPortfolioWebsite.Controllers
 
         }
 
+        [AuthorizeToken]
         [HttpPut]
         [Route("projects/edit/{id}/{property}/{data}")]
         public void EditProject(string id, string property, string data)
@@ -117,6 +120,7 @@ namespace MyPortfolioWebsite.Controllers
             mContext.SaveChanges();
         }
 
+        [AuthorizeToken]
         [HttpDelete]
         [Route("projects/delete/{id}")]
         public void DeleteProject(string id)
@@ -129,32 +133,6 @@ namespace MyPortfolioWebsite.Controllers
             mContext.SaveChanges();
         }
 
-        [HttpGet]
-        [Route("pages/{pageName}")]
-        public string GetPageInfo(string pageName)
-        {
-            if (Enum.TryParse(pageName, out PagesDataModel.Pages page))
-            {
-                return mContext.Pages.Single(p => p.Page.Equals(page)).Text;
-            }
-
-
-            return null;
-        }
-
-        [HttpPut]
-        [Route("pages/{pageName}/{pageData}")]
-        public void EditPageInfo(string pageName, string pageData)
-        {
-            if(Enum.TryParse(pageName, out PagesDataModel.Pages page))
-            {
-                var result = mContext.Pages.Single(p => p.Page.Equals(page));
-
-                result.Text = pageData;
-
-                mContext.SaveChanges();
-            }
-        }
 
         /// <summary>
         /// Creates our single user for now
@@ -171,10 +149,12 @@ namespace MyPortfolioWebsite.Controllers
 
         }
 
+        [HttpGet]
         [Route("signout")]
         public async Task SignOutAsync()
         {
             await HttpContext.SignOutAsync();
+            HttpContext.Response.Cookies.Delete("Authorization");
         } 
 
         [HttpPost]
@@ -209,12 +189,16 @@ namespace MyPortfolioWebsite.Controllers
                     expires: DateTime.Now.AddMonths(3)
                     );
 
-                // Return token to user
-                return Ok(
-                    new
+                var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
+                HttpContext.Response.Cookies.Append("Authorization",
+                    "{'token':'"+jwtToken + "'}",
+                    new CookieOptions()
                     {
-                        token = new JwtSecurityTokenHandler().WriteToken(token)
+                        Expires = DateTime.Now.AddMonths(3),
+                        HttpOnly = true
                     });
+
+                return Ok();
             }
 
             return null;
