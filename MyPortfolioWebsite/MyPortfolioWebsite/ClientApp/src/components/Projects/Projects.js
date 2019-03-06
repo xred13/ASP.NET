@@ -23,5 +23,10 @@ export class Projects extends Component{
                 <GameDevelopment />
             );
         }
+        else{
+            return(
+                <div></div>
+            );
+        }
     }
 }

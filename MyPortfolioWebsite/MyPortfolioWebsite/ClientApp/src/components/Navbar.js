@@ -10,17 +10,17 @@ class Navbar extends Component {
     return (
       <nav className="navbar">
         <ul className="navbar-items-container">
-          <li className="navbar-item"><Link to="#">Home</Link></li>
+          <Link to="/"><li className="navbar-item">Home</li></Link>
           <li className="navbar-dropdown">
-            <Link to="#">Projects</Link>
+            Projects
             <ul className="navbar-dropdown-items-container">
-              <li className="navbar-dropdown-item"><Link to="#">WebDev</Link></li>
-              <li className="navbar-dropdown-item"><Link to="#">GameDev</Link></li>
+            <Link to="/WebDevelopment"><li className="navbar-dropdown-item">WebDev</li></Link>
+              <Link to="/GameDevelopment"><li className="navbar-dropdown-item">GameDev</li></Link>
             </ul>
           </li>
-          <li className="navbar-item"><Link to="#">AboutMe</Link></li>
-          <li className="navbar-item"><Link to="#">Contacts</Link></li>
-          <li className="navbar-item"><Link to="#">Login</Link></li>
+          <Link to="/AboutMe"><li className="navbar-item">AboutMe</li></Link>
+          <Link to="/Contacts"><li className="navbar-item">Contacts</li></Link>
+          <LoginButton />
         </ul>
       </nav>
     );

@@ -13,6 +13,7 @@ a:hover {
   display: -ms-flexbox;
   display: flex;
   background-color: #b13d37;
+  color: white;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -47,6 +48,7 @@ a:hover {
 
 .navbar .navbar-items-container .navbar-dropdown:hover {
   background-color: rgba(119, 22, 22, 0.644);
+  cursor: default;
 }
 
 .navbar .navbar-items-container .navbar-dropdown .navbar-dropdown-items-container {

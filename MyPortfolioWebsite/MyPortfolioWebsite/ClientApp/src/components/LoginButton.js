@@ -15,17 +15,16 @@ const LoginButton = (props) => {
         });
 
         LoggedOut(() => setLoggedIn(false));
-        console.log("Should be false!: " + isLoggedIn);
     }
 
     if(isLoggedIn){
         return(
-            <li><Link to="/Home"><button onClick={signOut}>SignOut</button></Link></li>
+            <Link to="/Home"><li className="navbar-item" onClick={signOut}>SignOut</li></Link>
         );
     }
     else{
         return(
-            <li><Link to="/Login"><button className="navbar-button">Login</button></Link></li>
+            <Link to="/Login"><li className="navbar-item">Login</li></Link>
         );
     }
 }
