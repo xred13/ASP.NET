@@ -4,6 +4,8 @@ a {
 
 a:hover {
   color: white;
+  text-decoration: none;
+  cursor: default;
 }
 
 .navbar {
@@ -51,6 +53,8 @@ a:hover {
   list-style-type: none;
   list-style-position: inside;
   position: absolute;
+  left: -40px;
+  top: 79px;
 }
 
 .navbar .navbar-items-container .navbar-dropdown .navbar-dropdown-items-container .navbar-dropdown-item {
@@ -60,7 +64,7 @@ a:hover {
 .navbar .navbar-items-container .navbar-dropdown:hover .navbar-dropdown-items-container .navbar-dropdown-item {
   display: block;
   background-color: #b13d37;
-  padding: 29px;
+  padding: 30px 23px;
 }
 
 .navbar .navbar-items-container .navbar-dropdown:hover .navbar-dropdown-items-container .navbar-dropdown-item:hover {

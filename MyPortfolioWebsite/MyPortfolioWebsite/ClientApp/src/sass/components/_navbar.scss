@@ -2,7 +2,10 @@ a{
     color: white;
     &:hover{
         color:white;
+        text-decoration: none;
+        cursor: default;
     }
+
 }
 
 .navbar{
@@ -11,7 +14,7 @@ a{
     justify-content: center;
     align-items: center;
     height: 80px;
-        
+
     .navbar-items-container{
         list-style-type: none;
         list-style-position: inside;
@@ -42,10 +45,11 @@ a{
                 list-style-type: none;
                 list-style-position: inside;
                 position: absolute;
+                left: -40px;
+                top: 79px;
 
                 .navbar-dropdown-item{
                     display:none;
-
                 }
             }
 
@@ -54,7 +58,7 @@ a{
                     .navbar-dropdown-item{
                         display: block;
                         background-color: rgb(177, 61, 55);
-                        padding: 29px;
+                        padding: 30px 23px;
 
                         &:hover{
                             background-color: rgb(119, 22, 22);
