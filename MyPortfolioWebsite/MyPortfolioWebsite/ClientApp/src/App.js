@@ -4,7 +4,7 @@ import { Home } from './components/Home';
 import { AboutMe } from './components/AboutMe';
 import { Contacts } from './components/Contacts';
 import { More } from './components/More';
-import { Projects } from './components/Projects/Projects'
+import Projects from './components/Projects/Projects'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
 import './css/app.css';

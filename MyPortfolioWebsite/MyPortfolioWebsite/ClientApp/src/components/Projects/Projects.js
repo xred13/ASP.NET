@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { WebDevelopment } from './WebDevelopment';
-import { GameDevelopment } from './GameDevelopment';
+import GameDevelopment from './GameDevelopment';
+import { connect } from 'react-redux';
+import { NewProject } from './NewProject';
 
-
-export class Projects extends Component{
+class Projects extends Component{
     displayName = Projects.name;
 
     render(){
@@ -14,13 +15,19 @@ export class Projects extends Component{
         if(projectType === "WebDevelopment"){
             console.log("Loading WebDev projects.")
             return(
-                <WebDevelopment />
+                <div>
+                    <NewProject isLoggedIn={this.props.isLoggedIn}/>
+                    <WebDevelopment />
+                </div>
             );
         }
         else if(projectType === "GameDevelopment"){
             console.log("Loading GameDev projects.")
             return(
-                <GameDevelopment />
+                <div>
+                    <NewProject isLoggedIn={this.props.isLoggedIn}/>
+                    <GameDevelopment />
+                </div>
             );
         }
         else{
@@ -30,3 +37,11 @@ export class Projects extends Component{
         }
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps)(Projects);

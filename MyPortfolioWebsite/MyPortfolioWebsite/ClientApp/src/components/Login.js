@@ -33,8 +33,8 @@ class Login extends Component {
     // });
     // console.log("AFTER CREATE");
 
-    console.log("Before fetching");
-    console.log(this.state);
+    // console.log("Before fetching");
+    // console.log(this.state);
 
 
     var response = await fetch("https://localhost:5001/api/login",{

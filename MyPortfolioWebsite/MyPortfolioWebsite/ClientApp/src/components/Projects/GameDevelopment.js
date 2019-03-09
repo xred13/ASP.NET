@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Project } from './Project';
+import { connect } from "react-redux";
 
-export class GameDevelopment extends Component{
+class GameDevelopment extends Component{
     displayName = GameDevelopment.name;
 
     state = {
@@ -25,7 +26,7 @@ export class GameDevelopment extends Component{
             console.log("Loading stopped, passing data: " + this.state.projects);
             return(
                 <div className="projects-container">
-                    <Project projects={this.state.projects}/>
+                    <Project isLoggedIn={this.props.isLoggedIn} projects={this.state.projects}/>
                 </div>
             );
         }
@@ -35,3 +36,11 @@ export class GameDevelopment extends Component{
 
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps)(GameDevelopment);

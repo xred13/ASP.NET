@@ -20,7 +20,7 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 80px;
+  height: 100px;
 }
 
 .navbar .navbar-items-container {
@@ -33,7 +33,7 @@ a:hover {
 
 .navbar .navbar-items-container .navbar-item {
   display: inline-block;
-  padding: 29px;
+  padding: 39px;
 }
 
 .navbar .navbar-items-container .navbar-item:hover {
@@ -42,7 +42,7 @@ a:hover {
 
 .navbar .navbar-items-container .navbar-dropdown {
   display: inline-block;
-  padding: 29px;
+  padding: 39px;
   position: relative;
 }
 
@@ -56,7 +56,7 @@ a:hover {
   list-style-position: inside;
   position: absolute;
   left: -40px;
-  top: 79px;
+  top: 99px;
 }
 
 .navbar .navbar-items-container .navbar-dropdown .navbar-dropdown-items-container .navbar-dropdown-item {
@@ -66,7 +66,7 @@ a:hover {
 .navbar .navbar-items-container .navbar-dropdown:hover .navbar-dropdown-items-container .navbar-dropdown-item {
   display: block;
   background-color: #b13d37;
-  padding: 30px 23px;
+  padding: 39px 33px;
 }
 
 .navbar .navbar-items-container .navbar-dropdown:hover .navbar-dropdown-items-container .navbar-dropdown-item:hover {
@@ -74,15 +74,26 @@ a:hover {
 }
 
 .projects-container {
+  width: 650px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-color: yellow;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .projects-container .project {
-  margin: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 200px;
+  background-color: blue;
+}
+
+.new-project {
+  display: block;
 }
 /*# sourceMappingURL=app.css.map */

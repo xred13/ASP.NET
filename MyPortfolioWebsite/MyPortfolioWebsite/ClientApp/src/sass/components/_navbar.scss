@@ -14,7 +14,7 @@ a{
     color: white;
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 100px;
 
     .navbar-items-container{
         list-style-type: none;
@@ -25,7 +25,7 @@ a{
 
         .navbar-item{
             display: inline-block;
-            padding: 29px;
+            padding: 39px;
 
             &:hover{
                 background-color: rgba(119, 22, 22, 0.644);
@@ -34,7 +34,7 @@ a{
 
         .navbar-dropdown {
             display: inline-block;
-            padding: 29px;
+            padding: 39px;
 
             &:hover{
                 background-color: rgba(119, 22, 22, 0.644);
@@ -48,7 +48,7 @@ a{
                 list-style-position: inside;
                 position: absolute;
                 left: -40px;
-                top: 79px;
+                top: 99px;
 
                 .navbar-dropdown-item{
                     display:none;
@@ -60,7 +60,7 @@ a{
                     .navbar-dropdown-item{
                         display: block;
                         background-color: rgb(177, 61, 55);
-                        padding: 30px 23px;
+                        padding: 39px 33px;
 
                         &:hover{
                             background-color: rgb(119, 22, 22);
