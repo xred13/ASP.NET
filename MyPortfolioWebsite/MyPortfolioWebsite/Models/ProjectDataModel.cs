@@ -25,13 +25,10 @@ namespace MyPortfolioWebsite.Models
         [MaxLength(2048)]
         public string Description { get; set; }
 
-        [NotMapped]
-        public List<string> ImageList { get; set; }
-
-        public string ImageListString {
-            get { return string.Join(",", ImageList); }
-            set { ImageList = value.Split(",").ToList(); }
-        }
+        /// <summary>
+        /// The images of this project, in a base64 encoded string
+        /// </summary>
+        public string Images { get; set; }
 
 
         public enum ProjectTypes

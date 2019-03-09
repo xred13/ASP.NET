@@ -122,20 +122,21 @@ namespace MyPortfolioWebsite.Controllers
         [AuthorizeToken]
         [HttpPost]
         [Route("projects/add")]
-        public void AddProject([FromBody]NewProjectData projectData)
+        public void AddProject(string Title, string Description, string ProjectType, string ImagesBase64)
         {
 
             Console.WriteLine("--------- ADD PROJECT API CALLED");
-            Console.WriteLine("TITLE: " + projectData.Title + " Description: " + projectData.Description + " ProjectType :" + projectData.ProjectType);
+            Console.WriteLine("TITLE: " + Title + " Description: " + Description + " ProjectType :" + ProjectType);
+            Console.WriteLine("IMAGES BASE 64: " + ImagesBase64);
 
             ProjectDataModel project = new ProjectDataModel
             {
-                Title = projectData.Title,
-                Description = projectData.Description,
-                ImageListString = ""
+                Title = Title,
+                Description = Description,
+                Images = ImagesBase64
             };
 
-            if (Enum.TryParse(projectData.ProjectType, out ProjectDataModel.ProjectTypes projectType))
+            if (Enum.TryParse(ProjectType, out ProjectDataModel.ProjectTypes projectType))
             {
                 project.ProjectType = projectType;
             }
@@ -172,20 +173,56 @@ namespace MyPortfolioWebsite.Controllers
         }
 
         [AuthorizeToken]
-        [HttpPut]
-        [Route("projects/edit/image/{id}/{toDo}")]
-        public void EditProjectImage(string id, string toDo, IFormFile photo)
+        [HttpPost]
+        [Route("projects/edit/image")]
+        public void EditProjectAddImage(string projectId, string imagesBase64)
         {
             Console.WriteLine("------------ PROJECT EDIT IMAGE");
-            Console.WriteLine("PHOTO NAME: " + photo.Name);
-            Console.WriteLine("PHOTO FILENAME: " + photo.FileName);
-            if(toDo == "Add")
-            {
-                var result = mContext.Projects.Single(project => project.Id.Equals(id));
-
-                
-            }
+            Console.WriteLine("PROJECTID: " + projectId);
+            Console.WriteLine("IMAGES: " + imagesBase64);
             Console.WriteLine("ENDING PROJECT EDIT IMAGE");
+
+            var result = mContext.Projects.Single(project => project.Id.Equals(projectId));
+
+            if(result.Images.Length == 0)
+            {
+                result.Images += imagesBase64;
+            }
+            else
+            {
+                result.Images += "," + imagesBase64;
+            }
+
+            mContext.SaveChanges();
+        }
+
+        [AuthorizeToken]
+        [HttpDelete]
+        [Route("projects/edit/image")]
+        public void EditProjectDeleteImage(string projectId, string imageIndex)
+        {
+            Console.WriteLine("-----------DELETING AN IMAGE");
+
+            int deleteIndex = int.Parse(imageIndex);
+
+            var result = mContext.Projects.Single(project => project.Id.Equals(projectId));
+
+            var imagesArray = result.Images.Split(",");
+
+            string[] newImages = new string[imagesArray.Length - 1];
+
+            int cont = 0;
+            for(int i = 0; i < imagesArray.Length; i++)
+            {
+                if(i != deleteIndex)
+                {
+                    newImages[cont++] = imagesArray[i];
+                }
+            }
+
+            result.Images = string.Join(',', newImages);
+
+            mContext.SaveChanges();
         }
 
         [AuthorizeToken]
@@ -285,12 +322,5 @@ namespace MyPortfolioWebsite.Controllers
     {
         public string username;
         public string password;
-    }
-
-    public class NewProjectData
-    {
-        public string Title;
-        public string Description;
-        public string ProjectType;
     }
 }

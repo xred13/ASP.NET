@@ -20,13 +20,13 @@ export const Project = (props) => {
             return(        
                 props.projects.map(project => {
                     console.log(project);
-                    console.log(project.id);
-                    console.log(project.ImageListString);
+
+                    let image = project.images.split(',')[0];
     
                     return (
                         <div className="project" key={project.id}>
-                            <img src={`data:image/jpeg;base64,${project.imageListString}`} />
-                            <EditProject isLoggedIn={props.isLoggedIn} projectId={project.id}/>
+                            <img src={`data:image/jpeg;base64,${image}`} />
+                            <EditProject forceUpdate={props.forceUpdate} isLoggedIn={props.isLoggedIn} projectId={project.id}/>
                         </div>
                     );
                 }
@@ -36,12 +36,13 @@ export const Project = (props) => {
             return(        
                 props.projects.map(project => {
                     console.log(project);
-                    console.log(project.id);
-                    console.log(project.ImageListString);
+
+                    let image = project.images.split(',')[0];
+
     
                     return (
                         <div className="project" key={project.id}>
-                            <img src={`data:image/jpeg;base64,${project.imageListString}`} />
+                            <img src={`data:image/jpeg;base64,${image}`} />
                         </div>
                     );
                 }

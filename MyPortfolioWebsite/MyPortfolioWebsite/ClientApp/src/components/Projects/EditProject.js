@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import ImageUploader from "react-images-upload";
-import axios from 'axios';
-
 
 export class EditProject extends Component{
 
@@ -15,7 +12,8 @@ export class EditProject extends Component{
         Images: [],
         Title: "",
         Description: "",
-        ProjectType: ""
+        ProjectType: "",
+        ImageIndex: ""
     }
 
     editProjectClicked = () => {
@@ -42,13 +40,27 @@ export class EditProject extends Component{
         console.log(this.state.Images);
 
         this.setState({
-            Images: this.state.Images.concat(event.target.files)
+            Images: event.target.files
         });
         console.log("PICTURES AFTER: ");
         console.log(this.state.Images);
     }
 
-    onSubmit = (event) => {
+    readFileAsync = (file) => {
+        return new Promise((resolve, reject) => {
+            let reader = new FileReader();
+
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+
+            reader.onerror = reject;
+
+            reader.readAsDataURL(file);
+        })
+    }
+
+    onSubmit = async (event) => {
 
         event.preventDefault();
 
@@ -74,35 +86,53 @@ export class EditProject extends Component{
         }
         else if(event.target.value === "SubmitImage"){
 
-            // const formData = new FormData();
-            // formData.append("photo", this.state.Images[0]);
+            const formData = new FormData();
+            let imagesBase64 = "";
 
-            // console.log("IMAGE ARRAY: ");
-            // console.log(this.state.Images);
-            // console.log("IMAGE: ");
-            // console.log(this.state.Images[0]);
-            // console.log("Form DATA: ");
-            // console.log(formData);
+            for(var i = 0; i < this.state.Images.length; i++){
+                let imageBase64 = await this.readFileAsync(this.state.Images[i]);
+                
+                let testArray = imageBase64.split(",");
+                console.log("ARRAY LENGTH MUST BE 2: " + testArray.length);
 
-            // fetch("https://localhost:5001/api/projects/edit/image/" + this.props.projectId + "/add", 
-            // {
-            //     method: "PUT",
-            //     body: JSON.stringify({photo: this.state.Images[0]})
-            // });
+                imageBase64 = testArray[1];
 
-            
-            let form = new FormData();
+                if(imagesBase64.length == 0){
+                    imagesBase64 += imageBase64;
+                }
+                else{
+                    imagesBase64 += "," + imageBase64;
+                }
 
-            for(var index = 0; index < this.state.Images.length; index++){
-                var image = this.state.Images[index];
-                form.append("photo", image);
+                console.log(imagesBase64);
             }
 
-            axios.post("https://localhost:5001/api/projects/edit/image/" + this.props.projectId + "/add", form);
+            formData.append("imagesBase64", imagesBase64);
+            formData.append("projectId", this.props.projectId);
+
+            fetch("https://localhost:5001/api/projects/edit/image", 
+            {
+                method: "POST",
+                body: formData
+            });
+        }
+        else if(event.target.value === "DeleteImage"){
+            const formData = new FormData();
+
+            formData.append("projectId", this.props.projectId);
+            formData.append("imageIndex", this.state.ImageIndex);
+
+            fetch("https://localhost:5001/api/projects/edit/image",
+            {
+                method: "DELETE",
+                body: formData
+            });
         }
         else{
             return;
         }
+
+        this.props.forceUpdate();
     }
 
     render(){
@@ -136,16 +166,6 @@ export class EditProject extends Component{
                                 <label htmlFor="Images">Images:</label>
                                 <input type="file" id="Images" onChange={this.onChangeImage} accept="image/png, image/jpeg"/>
         
-        
-                                {/* <ImageUploader
-                                    withIcon={true}
-                                    buttonText="Choose images"
-                                    onChange={this.onChangeImage}
-                                    imgExtension={[".jpg", ".png"]}
-                                    maxFileSize={5242880}
-                                />  */}
-
-        
                                 <button type="submit" value="SubmitImage" onClick={this.onSubmit}>Submit</button>
                             </form>
 
@@ -158,6 +178,13 @@ export class EditProject extends Component{
                                 </select>
         
                                 <button type="submit" value="SubmitProjectType" onClick={this.onSubmit}>Submit</button>
+                            </form>
+
+                            <form onSubmit={this.onSubmit}>
+                            <label htmlFor="ImageIndex">Image Index</label>
+                            <input type="text" value={this.state.imageIndex} onChange={this.onChange} placeholder="Index of image to delete" id="ImageIndex" />
+                            <br/>
+                            <button type="submit" value="DeleteImage" onClick={this.onSubmit}>Delete Image</button>
                             </form>
                             
                         </div>

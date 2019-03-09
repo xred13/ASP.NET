@@ -42,25 +42,61 @@ export class NewProject extends Component{
         console.log("PICTURES BEFORE: ");
         console.log(this.state.Images);
 
-        let images = event.target.files;
-
         this.setState({
-            Images: this.state.Images.concat(images)
+            Images: event.target.files
         });
         console.log("PICTURES AFTER: ");
         console.log(this.state.Images);
     }
 
-    onSubmit = (event) => {
+    readFileAsync = (file) => {
+        return new Promise((resolve, reject) => {
+            let reader = new FileReader();
+
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+
+            reader.onerror = reject;
+
+            reader.readAsDataURL(file);
+        })
+    }
+
+    onSubmit = async (event) => {
 
         event.preventDefault();
+
+        let imagesBase64 = "";
+        for(var i = 0; i < this.state.Images.length; i++){
+            let imageBase64 = await this.readFileAsync(this.state.Images[i]);
+            
+            let testArray = imageBase64.split(",");
+            console.log("ARRAY LENGTH MUST BE 2: " + testArray.length);
+
+            imageBase64 = testArray[1];
+
+            if(imagesBase64.length == 0){
+                imagesBase64 += imageBase64;
+            }
+            else{
+                imagesBase64 += "," + imageBase64;
+            }
+
+            console.log(imagesBase64);
+        }
+
+        const formData = new FormData();
+        formData.append("Title", this.state.Title);
+        formData.append("Description", this.state.Description);
+        formData.append("ProjectType", this.state.ProjectType);
+        formData.append("ImagesBase64", imagesBase64);
+
         fetch("https://localhost:5001/api/projects/add", 
         {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({Title: this.state.Title, Description: this.state.Description, ProjectType: this.state.ProjectType})
+            body: formData
         });
-
 
     }
 
@@ -87,16 +123,7 @@ export class NewProject extends Component{
                                 <br />
         
                                 <label htmlFor="Images">Images:</label>
-                                <input type="file" name="Images" id="Images" onChange={this.onChangeImage} accept="image/png, image/jpeg, image/jpg"/>
-        
-        
-                                {/* <ImageUploader
-                                    withIcon={true}
-                                    buttonText="Choose images"
-                                    onChange={this.onChangeImage}
-                                    imgExtension={[".jpg", ".png"]}
-                                    maxFileSize={5242880}
-                                />  */}
+                                <input type="file" id="Images" onChange={this.onChangeImage} accept="image/png, image/jpeg, image/jpg"/>
         
         
                                 <label htmlFor="ProjectType">ProjectType:</label>
