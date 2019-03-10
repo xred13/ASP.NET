@@ -15,7 +15,7 @@ class Projects extends Component{
         if(projectType === "WebDevelopment"){
             console.log("Loading WebDev projects.")
             return(
-                <div>
+                <div className="main-div">
                     <NewProject isLoggedIn={this.props.isLoggedIn}/>
                     <WebDevelopment />
                 </div>
@@ -24,7 +24,7 @@ class Projects extends Component{
         else if(projectType === "GameDevelopment"){
             console.log("Loading GameDev projects.")
             return(
-                <div>
+                <div className="main-div">
                     <NewProject isLoggedIn={this.props.isLoggedIn}/>
                     <GameDevelopment />
                 </div>

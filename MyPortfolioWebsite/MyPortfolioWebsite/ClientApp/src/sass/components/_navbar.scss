@@ -8,70 +8,185 @@ a{
 
 }
 
-.navbar{
-    display: flex;
-    background-color: rgb(177, 61, 55);
-    color: white;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
+@media screen and (max-width: 699px){
+    .navbar{
+        display: flex;
+        position: relative;
+        background-color: rgb(177, 61, 55);
+        color: white;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        border: 0;
 
-    .navbar-items-container{
-        list-style-type: none;
-        list-style-position: inside;
-        padding: 0;
-        margin: 0;
-        height: 100%;
-
-        .navbar-item{
-            display: inline-block;
-            padding: 39px;
-
+        .low-width-item{
+            position: relative;
+            width: 75%;
+            background-color: rgb(138, 43, 38);
+            padding: 0;
+            margin: 0;
+            height: 100%;
             &:hover{
-                background-color: rgba(119, 22, 22, 0.644);
+                background-color: rgb(119, 22, 22);
+            }
+
+            .arrow-down {
+                position: absolute;
+                left: 50%;
+                margin-left: -30px;
+                top: 30px;
+                width: 0; 
+                height: 0; 
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+                border-top: 40px solid rgb(185, 37, 37);
             }
         }
+    
+        .navbar-items-container{
+            position:absolute;
+            display:none;
+            top: 100px;
+            width: 75%;
+            background-color: rgb(177, 61, 55);
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            z-index: 2;
+    
+            .navbar-item{
+                display: block;
+                padding: 39px;
+                background-color: rgb(177, 61, 55);
+                text-align: center;
 
-        .navbar-dropdown {
-            display: inline-block;
-            padding: 39px;
-
-            &:hover{
-                background-color: rgba(119, 22, 22, 0.644);
-                cursor: default;
-            }
-
-            position: relative;
-        
-            .navbar-dropdown-items-container{
-                list-style-type: none;
-                list-style-position: inside;
-                position: absolute;
-                left: -40px;
-                top: 99px;
-
-                .navbar-dropdown-item{
-                    display:none;
+    
+                &:hover{
+                    background-color: rgb(119, 22, 22);
                 }
             }
+    
+            .navbar-dropdown {
+                position: relative;
+                display: block;
+                padding: 39px;
+                background-color: rgb(177, 61, 55);
+                text-align: center;
 
-            &:hover{
+                &:hover{
+                    background-color: rgb(119, 22, 22);
+                    cursor: default;
+                }
+    
+            
                 .navbar-dropdown-items-container{
+                    position: absolute;
+                    left: 5%;
+                    top: 98px;
+                    width: 90%;
+                    background-color: black;
+                    padding-left: 0;
+    
                     .navbar-dropdown-item{
-                        display: block;
-                        background-color: rgb(177, 61, 55);
-                        padding: 39px 33px;
+                        display:none;
 
                         &:hover{
                             background-color: rgb(119, 22, 22);
                         }
-                        
+                    }
+                }
+    
+                &:hover{
+                    .navbar-dropdown-items-container{
+                        .navbar-dropdown-item{
+                            display: block;
+                            background-color: rgb(131, 45, 40);
+                            padding: 39px;
+    
+                            &:hover{
+                                background-color: rgb(119, 22, 22);
+                            }
+                            
+                        }
                     }
                 }
             }
         }
     }
 }
+
+@media screen and (min-width: 700px){
+
+    .low-width-item{
+        display:none;
+    }
+
+    .navbar{
+        display: flex;
+        background-color: rgb(177, 61, 55);
+        color: white;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+    
+        .navbar-items-container{
+            list-style-type: none;
+            list-style-position: inside;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+    
+            .navbar-item{
+                display: inline-block;
+                padding: 39px;
+    
+                &:hover{
+                    background-color: rgba(119, 22, 22, 0.644);
+                }
+            }
+    
+            .navbar-dropdown {
+                display: inline-block;
+                padding: 39px;
+    
+                &:hover{
+                    background-color: rgba(119, 22, 22, 0.644);
+                    cursor: default;
+                }
+    
+                position: relative;
+            
+                .navbar-dropdown-items-container{
+                    list-style-type: none;
+                    list-style-position: inside;
+                    position: absolute;
+                    left: -40px;
+                    top: 98px;
+    
+                    .navbar-dropdown-item{
+                        display:none;
+                    }
+                }
+    
+                &:hover{
+                    .navbar-dropdown-items-container{
+                        .navbar-dropdown-item{
+                            display: block;
+                            background-color: rgb(177, 61, 55);
+                            padding: 39px 33px;
+    
+                            &:hover{
+                                background-color: rgb(119, 22, 22);
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 
 

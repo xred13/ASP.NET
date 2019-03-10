@@ -144,7 +144,7 @@ export class EditProject extends Component{
                     <div className="edit-project-div">
                         <button className="edit-project-button" onClick={this.editProjectClicked}>Edit Project</button>
         
-                        <div className="edit-project" id="edit-project-id">
+                        <div className="edit-project-container" id="edit-project-id">
                             
                             <form onSubmit={this.onSubmit}>
                                 <label htmlFor="Title">Title:</label>

@@ -9,8 +9,7 @@ class GameDevelopment extends Component{
         // Each project in projects has a 
         // title, description and image
         projects: [],
-        loading: true,
-        forceUpdate: false
+        loading: true
     }
 
     async forceUpdate(){
@@ -27,6 +26,7 @@ class GameDevelopment extends Component{
     timeout(ms){
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+
 
     componentDidMount(){
 

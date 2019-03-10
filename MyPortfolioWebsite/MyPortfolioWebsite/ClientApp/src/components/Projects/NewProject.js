@@ -106,8 +106,8 @@ export class NewProject extends Component{
 
             if(this.state.newProjectFormToggled){
                 return(
-                    <div>
-                        <button onClick={this.newProjectClicked}>New Project</button>
+                    <div className="new-project-div">
+                        <button className="new-project-button" onClick={this.newProjectClicked}>New Project</button>
         
                         <div className="new-project" id="new-project-id">
                             
@@ -142,8 +142,8 @@ export class NewProject extends Component{
             }
             else{
                 return(
-                    <div>
-                        <button onClick={this.newProjectClicked}>New Project</button>
+                    <div className="new-project-div">
+                        <button className="new-project-button" onClick={this.newProjectClicked}>New Project</button>
                     </div>
                 );
             }
