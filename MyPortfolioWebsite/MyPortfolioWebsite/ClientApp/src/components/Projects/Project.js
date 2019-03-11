@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { EditProject } from "./EditProject";
 
 export class Project extends Component{
 
@@ -29,7 +28,6 @@ export class Project extends Component{
     }
 
     render(){
-
         if(this.props.projects.length === 0 || this.props.projects === null){
             console.log("NO PROJECTS: " + this.props.projects.length + " and they are: " + JSON.stringify(this.props.projects));
             return(
@@ -40,173 +38,134 @@ export class Project extends Component{
         }
         else{
             console.log("There are: " + this.props.projects.length + " projects.");
-    
-    
-            if(this.props.isLoggedIn){
-                if(this.state.width >= 900){
-                    let cont = 1;
-                    let remaining = this.props.projects.length;
-                    return(    
-                        this.props.projects.map(project => {
-        
-                            // while we dont have an image slider, we need to choose first image of the array
-                            let image = project.images.split(',')[0];
-                            if(remaining > 2){
 
-                                if(cont === 1){
-                                    cont++; 
-                                    if(cont > 3){
-                                        cont = 1;
-                                    }
-                                    return (
-                                        <div className="project" style={{"gridColumn": "1/4"}} key={project.id}>
-                                            <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                            <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
-                                        </div>
-                                    );
+            if(this.state.width >= 900){
+                let cont = 1;
+                let remaining = this.props.projects.length;
+                return(    
+                    this.props.projects.map(project => {    
+                        // we choose first image of the array
+                        let image = project.images.split(',')[0];
+                        if(remaining > 2){
+                            if(cont === 1){
+                                cont++; 
+                                if(cont > 3){
+                                    cont = 1;
                                 }
-                                else if(cont === 2){
-                                    cont++; 
-                                    if(cont > 3){
-                                        cont = 1;
-                                    }
-                                    return (
-                                        <div className="project" style={{"gridColumn": "4/8"}} key={project.id}>
-                                            <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                            <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
-                                        </div>
-                                    );
-                                }
-                                else{
-                                    cont++; 
-                                    if(cont > 3){
-                                        remaining -= 3;
-                                        cont = 1;
-                                    }
-                                    return (
-                                        <div className="project" style={{"gridColumn": "8/11"}} key={project.id}>
-                                            <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                            <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
-                                        </div>
-                                    );
-                                }
+                                return (
+                                    <div className="project" style={{"gridColumn": "1/4"}} key={project.id}>
+                                        <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
+                                    </div>
+                                );
                             }
-                            else if(remaining === 2){
-                                if(cont === 1){
-                                    cont++; 
-                                    if(cont > 2){
-                                        cont = 1;
-                                    }
-                                    return (
-                                        <div className="project" style={{"gridColumn": "2/5"}} key={project.id}>
-                                            <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                            <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
-                                        </div>
-                                    );
+                            else if(cont === 2){
+                                cont++; 
+                                if(cont > 3){
+                                    cont = 1;
                                 }
-                                else{
-                                    cont++; 
-                                    if(cont > 2){
-                                        cont = 1;
-                                    }
-                                    return (
-                                        <div className="project" style={{"gridColumn": "7/10"}} key={project.id}>
-                                            <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                            <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
-                                        </div>
-                                    );
-                                }
-                            }
-                            else{
                                 return (
                                     <div className="project" style={{"gridColumn": "4/8"}} key={project.id}>
-                                        <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                        <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
+                                        <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
                                     </div>
                                 );
-                            }
-                        }
-                    ));
-                }
-                else if(this.state.width >= 700){
-                    let cont = 1;
-                    let remaining = this.props.projects.length;
-
-                    return(    
-                        this.props.projects.map(project => {
-                            console.log(project);
-        
-                            let image = project.images.split(',')[0];
-
-                            if(remaining > 1){
-                                if(cont === 1){
-                                    cont++;
-                                    return (
-                                        <div className="project" style={{"gridColumn": "1/4"}} key={project.id}>
-                                            <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                            <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
-                                        </div>
-                                    );
-                                }
-                                else{
-                                    cont = 1;
-                                    remaining -= 2;
-                                    return (
-                                        <div className="project" style={{"gridColumn": "4/7"}} key={project.id}>
-                                            <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                            <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
-                                        </div>
-                                    );
-                                }
                             }
                             else{
+                                remaining -= 3;
+                                cont = 1;
+                                
                                 return (
-                                    <div className="project" style={{"gridColumn": "2/6"}} key={project.id}>
-                                        <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                        <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
+                                    <div className="project" style={{"gridColumn": "8/11"}} key={project.id}>
+                                        <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
                                     </div>
                                 );
                             }
                         }
-                    ));
-
-                }
-                else{
-                    return(
-                        this.props.projects.map(project => {
-
-                            let image = project.images.split(',')[0];
-    
+                        else if(remaining === 2){
+                            if(cont === 1){
+                                cont++; 
+                                if(cont > 2){
+                                    cont = 1;
+                                }
+                                return (
+                                    <div className="project" style={{"gridColumn": "2/5"}} key={project.id}>
+                                        <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
+                                    </div>
+                                );
+                            }
+                            else{
+                                cont = 1;
+                                
+                                return (
+                                    <div className="project" style={{"gridColumn": "7/10"}} key={project.id}>
+                                        <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
+                                    </div>
+                                );
+                            }
+                        }
+                        else{
                             return (
-                                <div className="project" style={{"gridColumn": "1/2"}} key={project.id}>
-                                    <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                                    <EditProject forceUpdate={this.props.forceUpdate} isLoggedIn={this.props.isLoggedIn} projectId={project.id}/>
+                                <div className="project" style={{"gridColumn": "4/8"}} key={project.id}>
+                                    <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
                                 </div>
                             );
-                        })
-                    );
-                }
+                        }
+                    }
+                ));
             }
-            else{
-                return(        
+            else if(this.state.width >= 700){
+                let cont = 1;
+                let remaining = this.props.projects.length;
+
+                return(    
                     this.props.projects.map(project => {
                         console.log(project);
     
                         let image = project.images.split(',')[0];
-    
-        
-                        return (
-                            <div className="project" key={project.id}>
-                                <img alt="Project" src={`data:image/jpeg;base64,${image}`} />
-                            </div>
-                        );
+
+                        if(remaining > 1){
+                            if(cont === 1){
+                                cont++;
+                                return (
+                                    <div className="project" style={{"gridColumn": "1/4"}} key={project.id}>
+                                        <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
+                                    </div>
+                                );
+                            }
+                            else{
+                                cont = 1;
+                                remaining -= 2;
+                                return (
+                                    <div className="project" style={{"gridColumn": "4/7"}} key={project.id}>
+                                        <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
+                                    </div>
+                                );
+                            }
+                        }
+                        else{
+                            return (
+                                <div className="project" style={{"gridColumn": "2/6"}} key={project.id}>
+                                    <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
+                                </div>
+                            );
+                        }
                     }
                 ));
             }
-    
+            else{
+                return(
+                    this.props.projects.map(project => {
+
+                        let image = project.images.split(',')[0];
+
+                        return (
+                            <div className="project" style={{"gridColumn": "1/2"}} key={project.id}>
+                                <img alt="Project" src={`data:image/jpeg;base64,${image}`} onClick={() => this.props.projectClicked(project)} />
+                            </div>
+                        );
+                    })
+                );
+            }
     
         }
-
     }
-
 }

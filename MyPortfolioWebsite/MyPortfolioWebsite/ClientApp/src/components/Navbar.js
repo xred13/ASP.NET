@@ -14,7 +14,7 @@ class Navbar extends Component {
   state = {
     width: 0,
     height: 0,
-    display: "none"
+    display: "block"
   }
 
 
@@ -44,10 +44,10 @@ class Navbar extends Component {
   }
 
   render() {
-    if(this.state.width < 700){
+    if(this.state.width < 750){
       return (
         <nav className="navbar">
-          <div className="low-width-item"  onClick={() => this.dropdownClicked()}>
+          <div className="navbar-low-width-dropdown-button"  onClick={() => this.dropdownClicked()}>
             <div className="arrow-down"></div>
           </div>
           <ul className="navbar-items-container" style={{"display": this.state.display}}>
@@ -69,7 +69,7 @@ class Navbar extends Component {
     else{
       return (
         <nav className="navbar">
-          <div className="low-width-item"></div>
+          <div className="navbar-low-width-dropdown-button"></div>
           <ul className="navbar-items-container">
             <Link to="/"><li className="navbar-item">Home</li></Link>
             <li className="navbar-dropdown">

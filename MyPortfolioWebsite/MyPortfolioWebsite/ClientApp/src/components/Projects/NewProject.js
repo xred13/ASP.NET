@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { WebDevelopment } from './WebDevelopment';
-import { GameDevelopment } from './GameDevelopment';
-import ImageUploader from "react-images-upload";
 
 
 export class NewProject extends Component{
@@ -76,7 +73,7 @@ export class NewProject extends Component{
 
             imageBase64 = testArray[1];
 
-            if(imagesBase64.length == 0){
+            if(imagesBase64.length === 0){
                 imagesBase64 += imageBase64;
             }
             else{

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { WebDevelopment } from './WebDevelopment';
+import WebDevelopment from './WebDevelopment';
 import GameDevelopment from './GameDevelopment';
 import { connect } from 'react-redux';
 import { NewProject } from './NewProject';

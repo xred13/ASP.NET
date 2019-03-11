@@ -97,7 +97,7 @@ export class EditProject extends Component{
 
                 imageBase64 = testArray[1];
 
-                if(imagesBase64.length == 0){
+                if(imagesBase64.length === 0){
                     imagesBase64 += imageBase64;
                 }
                 else{

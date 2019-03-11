@@ -1,5 +1,4 @@
 .main-div{
-
     @media screen and (min-width: 900px){
         .projects-container{
             display:grid;
@@ -11,27 +10,12 @@
             align-items: center;
         
             .project{
-
                 img{
                     width: 100%;
         
                     &:hover{
                         transform: scale(1.25,1.25);
                     }
-        
-                }
-            }
-        
-            .edit-project-div{
-        
-                .edit-project-button{
-                    color:black;
-        
-                }
-        
-                .edit-project-container{
-                    color:black;
-        
                 }
             }
         }
@@ -58,19 +42,6 @@
         
                 }
             }
-        
-            .edit-project-div{
-        
-                .edit-project-button{
-                    color:black;
-        
-                }
-        
-                .edit-project-container{
-                    color:black;
-        
-                }
-            }
         }
     }
 
@@ -85,27 +56,11 @@
             align-items: center;
         
             .project{
-        
                 img{
                     width: 100%;
-        
                     &:hover{
                         transform: scale(1.25,1.25);
                     }
-        
-                }
-            }
-        
-            .edit-project-div{
-        
-                .edit-project-button{
-                    color:black;
-        
-                }
-        
-                .edit-project-container{
-                    color:black;
-        
                 }
             }
         }
@@ -135,6 +90,108 @@
         }
     }
 }
+
+.project-popup{
+    position: fixed;
+    left: 50%;
+    margin-left: -355px;
+    top: 20%;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 5px 400px 300px 5px;
+    grid-template-rows: 5px 300px 5px;
+    background-color: rgb(74, 94, 63);
+    z-index: 2;
+
+    .edit-button{
+        position: absolute;
+        left: 695px;
+        top: 0px;
+        width: 60px;
+    }
+
+    .project-popup-images{
+        position: relative;
+        grid-column: 2/3;
+        grid-row: 2/3;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+
+        .edit-add-image{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: green;
+        }
+
+        .edit-add-image-input{
+            position: absolute;
+            left: 50px;
+        }
+
+        .edit-add-image-submit{
+            position:absolute;
+            left: 50px;
+            top: 21px;
+        }
+        
+        .edit-delete-image{
+            position: absolute;
+            left: 350px;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            z-index: 4;
+        }
+    }
+
+    .project-popup-text{
+        grid-column: 3/4;
+        grid-row: 2/3;
+        display: grid;
+        grid-template-columns: 300px;
+        grid-template-rows: 50px 5px 250px;
+
+        .project-popup-title{
+            grid-row: 1/2;
+            background-color: red;
+        }
+
+        .edit-submit-title{
+            position: absolute;
+            left: 660px;
+            top: 30px;
+        }
+    
+        .project-popup-description{
+            grid-row: 3/4;
+            background-color: yellow;
+        }
+
+        .edit-submit-description{
+            position: absolute;
+            left: 660px;
+            top: 250px;
+        }
+
+        .project-popup-projecttype{
+            position: absolute;
+            top: 300px;
+            left: 440px;
+        }
+
+        .edit-submit-projecttype{
+            position: absolute;
+            top: 297px;
+            left: 600px;
+        }
+    }
+}
+
+
+
 
 
 
