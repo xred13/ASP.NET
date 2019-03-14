@@ -1,9 +1,13 @@
 a{
     color: $navbar-color;
+    text-decoration: none !important;
     &:hover{
-        color:$navbar-color;
-        text-decoration: none;
+        color: $navbar-color;
         cursor: default;
+    }
+
+    &:visited{
+        color: $navbar-color;
     }
 
 }
@@ -11,13 +15,17 @@ a{
 @media screen and (max-width: 749px){
     .navbar{
         display: flex;
-        position: relative;
+        position: fixed;
         background-color: $navbar-low-width-background-color;
         color: $navbar-color;
         justify-content: center;
         align-items: center;
-        height: $navbar-low-width-height;
+        width: 100%;
+        @include fluid-type(height, 150px, 749px, $navbar-low-width-height-minimum, $navbar-low-width-height-maximum);
+        margin: 0;
         border: 0;
+        border-radius: 0%;
+        z-index: 1;
 
         .navbar-low-width-dropdown-button{
             position: relative;
@@ -33,13 +41,20 @@ a{
             .arrow-down {
                 position: absolute;
                 left: 50%;
-                margin-left: -30px;
+                @include fluid-type(margin-left, 150px, 749px, -15px, -30px);
                 top: 30%;
                 width: 0; 
                 height: 0; 
-                border-left: 30px solid transparent;
-                border-right: 30px solid transparent;
-                border-top: 40px solid $navbar-low-width-dropdown-button-arrow-color;
+                @include fluid-type(border-left-width, 150px, 749px, 15px, 30px);
+                border-left-style: solid;
+                border-left-color: transparent;
+                @include fluid-type(border-right-width, 150px, 749px, 15px, 30px);
+                border-right-style: solid;
+                border-right-color: transparent;
+
+                @include fluid-type(border-top-width, 150px, 749px, 20px, 40px);
+                border-top-style: solid;
+                border-top-color: $navbar-low-width-dropdown-button-arrow-color;
             }
         }
     
@@ -108,7 +123,7 @@ a{
                             justify-content: center;
                             align-items: center;
                             width: 100%;
-                            height: $navbar-low-width-height;
+                            @include fluid-type(height, 150px, 749px, $navbar-low-width-height-minimum, $navbar-low-width-height-maximum);
                             background-color: $navbar-low-width-projects-item-background-color;
                             font-size: $navbar-low-width-fontsize;
     
@@ -124,19 +139,23 @@ a{
 }
 
 @media screen and (min-width: 750px){
-
     .low-width-item{
         display:none;
     }
 
     .navbar{
+        position: fixed;
         display: flex;
         background-color: $navbar-background-color;
         color: white;
         justify-content: center;
         align-items: center;
-        height: $navbar-height;
-    
+        @include fluid-type(height, 750px, 1600px, $navbar-height-minimum, $navbar-height-maximum);
+        margin: 0;
+        border: 0;
+        border-radius: 0%;
+        width: 100%;
+        z-index: 1;
         .navbar-items-container{
             list-style-type: none;
             list-style-position: inside;
@@ -149,8 +168,9 @@ a{
                 flex-direction: column;
                 justify-content: center;
                 height: 100%;
-                padding: 0 $navbar-item-padding-sides;
-                font-size: $navbar-fontsize;
+                @include fluid-type(padding-left, 750px, 1600px, $navbar-item-padding-sides-minimum, $navbar-item-padding-sides-maximum);
+                @include fluid-type(padding-right, 750px, 1600px, $navbar-item-padding-sides-minimum, $navbar-item-padding-sides-maximum);
+                @include fluid-type(font-size, 750px, 1600px, $navbar-fontsize-minimum, $navbar-fontsize-maximum);
     
                 &:hover{
                     background-color: $navbar-background-hover-color;
@@ -162,9 +182,9 @@ a{
                 flex-direction: column;
                 justify-content: center;
                 height: 100%;
-                padding: 0 $navbar-item-padding-sides;
-                font-size: $navbar-fontsize;
-    
+                @include fluid-type(padding-left, 750px, 1600px, $navbar-item-padding-sides-minimum, $navbar-item-padding-sides-maximum);
+                @include fluid-type(padding-right, 750px, 1600px, $navbar-item-padding-sides-minimum, $navbar-item-padding-sides-maximum);
+                @include fluid-type(font-size, 750px, 1600px, $navbar-fontsize-minimum, $navbar-fontsize-maximum);
                 &:hover{
                     background-color: $navbar-background-hover-color;
                     cursor: default;
@@ -176,9 +196,12 @@ a{
                     list-style-type: none;
                     list-style-position: inside;
                     position: absolute;
-                    left: -40px;
+                    left: 0;                    
                     top: 100%;
-    
+                    width: 100%;
+                    background-color: black;
+                    padding: 0;
+
                     .navbar-dropdown-item{
                         display:none;
                     }
@@ -192,9 +215,8 @@ a{
                             justify-content: center;
                             align-items: center;
                             background-color: $navbar-background-color;
-                            height: $navbar-height;
                             width: 100%;
-    
+                            @include fluid-type(height, 750px, 1600px, $navbar-height-minimum, $navbar-height-maximum);
                             &:hover{
                                 background-color: $navbar-background-dropdown-item-hover-color;
                             }

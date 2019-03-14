@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setLoggedIn } from "../actions/loggedInActions";
-import { LoggedOut } from "./Authentication/AuthenticationStatusManager";
+import { setLoggedIn } from "../../../actions/loggedInActions";
+import { LoggedOut } from "../../Authentication/AuthenticationStatusManager";
 
 const LoginButton = (props) => {
 

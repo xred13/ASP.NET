@@ -1,10 +1,89 @@
-.main-div{
+.projects-main-div{
+    background-color: rgb(6, 73, 62);
+
+    .projects-header{
+        display: flex;
+        flex-direction: column;
+        color: white;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 10%;
+        margin-top: 10%;
+        @include fluid-type(font-size, 150px, 1800px, 25px, 200px);
+    }
+
+    .projects-choosing{
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        color: white;
+        @include fluid-type(font-size, 150px, 1800px, 8px, 100px);
+        background-color: black;
+
+        .projects-choosing-webdevelopment{
+            position: relative;
+            grid-column: 1/2;
+            grid-row: 1/2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include fluid-type(width, 150px, 1800px, 75px, 900px);
+            @include fluid-type(height, 150px, 1800px, 50px, 500px);
+
+            &:hover{
+                background-color: rgb(2, 19, 15);
+            }
+
+            .projects-choosing-webdevelopment-image{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0.5;
+                img{
+                    opacity: 0.7;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        .projects-choosing-gamedevelopment{
+            position: relative;
+            grid-column: 2/3;
+            grid-row: 1/2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include fluid-type(width, 150px, 1800px, 75px, 900px);
+            @include fluid-type(height, 150px, 1800px, 50px, 500px);
+
+            &:hover{
+                background-color: rgb(5, 41, 32);
+            }
+
+            .projects-choosing-gamedevelopment-image{
+                position: absolute;;
+                width: 100%;
+                height: 100%;
+                opacity: 0.5;
+                img{
+                    opacity: 0.7;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+
     @media screen and (min-width: 900px){
         .projects-container{
             display:grid;
             grid-template-columns: 0.5fr 0.5fr 1fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr 0.5fr 0.5fr;
             grid-auto-rows: auto;
-            grid-gap: 10px;
+            @include fluid-type(column-gap, 700px, 899px, 20px, 60px);
+            @include fluid-type(row-gap, 700px, 899px, 10px, 20px);            
             max-width: 900px;
             margin: 0 auto;
             align-items: center;
@@ -26,7 +105,9 @@
             display:grid;
             grid-template-columns: 0.5fr 0.25fr 0.25fr 0.25fr 0.25fr 0.5fr;
             grid-auto-rows: auto;
-            grid-gap: 10px;
+            @include fluid-type(column-gap, 700px, 899px, 20px, 60px);
+            @include fluid-type(row-gap, 700px, 899px, 10px, 20px);
+
             max-width: 600px;
             margin: 0 auto;
             align-items: center;
@@ -68,6 +149,7 @@
 
     .new-project-div{
         display: block;
+        margin-top: 5%;
         width: 100%;
 
         .new-project-button{

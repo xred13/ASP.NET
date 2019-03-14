@@ -1,18 +1,23 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
+import home_image from "./../images/home_image.jpg";
 
-export class Home extends Component {
-  displayName = Home.name
+export class Home extends Component{
 
-
-  componentDidMount(){
-    console.log("Mounted Home.js");
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>This is the home webpage!</h1>
-      </div>
-    );
-  }
+    render(){
+        return(
+            <div className="home-div">
+                <div className="home-div-image">
+                    <img alt="software development" src={home_image}/>
+                </div>
+                <div className="home-div-main">
+                    <div className="home-div-main-name">
+                        Fábio Ramos
+                    </div>
+                    <div className="home-div-main-title">
+                        Software Developer
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }

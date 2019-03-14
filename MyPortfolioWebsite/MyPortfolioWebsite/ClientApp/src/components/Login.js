@@ -6,16 +6,9 @@ import { LoggedIn } from "./Authentication/AuthenticationStatusManager";
 class Login extends Component {
   displayName = Login.name;
 
-  constructor(props){
-
-    super(props);
-
-    this.state = {
-        username: "",
-        password: ""
-    }
-      
-    this.submitForm = this.submitForm.bind(this);
+  state = {
+      username: "",
+      password: ""
   }
   inputChange = (e) => {
       this.setState({
@@ -23,8 +16,8 @@ class Login extends Component {
       });
   };
 
-  async submitForm(e){
-
+  submitForm = async (e) => {
+      
     e.preventDefault();
 
     // console.log("BEFORE CREATE");
@@ -35,7 +28,6 @@ class Login extends Component {
 
     // console.log("Before fetching");
     // console.log(this.state);
-
 
     var response = await fetch("https://localhost:5001/api/login",{
         method: "POST",

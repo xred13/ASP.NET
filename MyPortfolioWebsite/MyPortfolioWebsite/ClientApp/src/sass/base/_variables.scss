@@ -1,6 +1,7 @@
 // -------------- Navbar --------------
 $navbar-color: white;
-$navbar-item-padding-sides: 39px;
+$navbar-item-padding-sides-maximum: 100px;
+$navbar-item-padding-sides-minimum: 20px;
 
 $navbar-background-color: rgb(177, 61, 55);
 $navbar-low-width-background-color: rgb(177, 61, 55);
@@ -11,10 +12,13 @@ $navbar-low-width-background-hover-color: rgba(119, 22, 22, 0.644);
 $navbar-background-dropdown-item-hover-color: rgb(119, 22, 22);
 $navbar-low-width-background-dropdown-item-hover-color: rgb(119, 22, 22);
 
-$navbar-height: 100px;
-$navbar-low-width-height: 100px;
+$navbar-height-maximum: 120px;
+$navbar-height-minimum: 100px;
+$navbar-low-width-height-minimum: 30px;
+$navbar-low-width-height-maximum: 100px;
 
-$navbar-fontsize: 20px;
+$navbar-fontsize-maximum: 30px;
+$navbar-fontsize-minimum: 20px;
 $navbar-low-width-fontsize: 20px;
 
 $navbar-low-width-dropdown-button-background-color: rgb(138, 43, 38);

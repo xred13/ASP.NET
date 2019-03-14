@@ -1,7 +1,10 @@
-@import "base/_variables.scss";
-@import "components/_navbar.scss";
-@import "components/_projects";
-
+@import "base/variables";
+@import "base/mixins";
+@import "components/navbar";
+@import "components/projects";
+@import "components/apppage";
+@import "components/aboutme";
+@import "components/_home";
 
 
 
